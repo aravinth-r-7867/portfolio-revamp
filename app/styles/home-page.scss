@@ -1,39 +1,89 @@
 /////////////////////////////////////////////////
 ///All styles for home page will be added here
 
-.home-container{
-    grid-template-columns: 25% 75%;
-    &__image-grid{
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: repeat(3, calc((100vh - 4rem) / 3));
-        padding: 1rem;
-        grid-gap: 1rem;
-    }
-    &__image{
-        &:nth-child(2){
-            grid-row: 2/3;
-            grid-column: 1/2;
-        }
-        &:nth-child(3){
-            grid-row: 1/3;
-            grid-column: 2/3;
-        }
-        &:nth-child(4){
-            grid-row: 3/-1;
-            grid-column: 2/3;
-        }
-        &:nth-child(5){
-            grid-row: 1/2;
-            grid-column: 3/-1;
-        }
-        &:nth-child(6){
-            grid-row: 2/3;
-            grid-column: 3/-1;
-        }
-        &:nth-child(5){
-            grid-row: 3/-1;
-            grid-column: 3/-1;
-        }
-    }
+.home-page-container {
+
+  @include mq-fun($target: min-width, $breakpoint: rem(1000)) {
+    grid-gap: rem(20);
+    padding: 0 rem(20);
+  }
+
+  @include mq-fun($target: min-width, $breakpoint: rem(600)) {
+    grid-gap: rem(40) rem(20);
+    grid-template-columns: minmax(25%, 1fr) 1fr 1fr;
+  }
+  grid-gap: rem(10);
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding: 0 rem(25);
 }
 
+.home-video {
+  @include mq-fun($target: max-width, $breakpoint: rem(600)) {
+    display: none;
+  }
+
+  grid-row: 2 / 3;
+  height: 100%;
+  width: 100%;
+}
+
+.home-page-nav-links {
+  color: var(--site-base-clr);
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    &::before {
+      width: 100%;
+  }
+}
+
+  &::before {
+    background-color: #0069ff; //Need to check : Use CSS variable in pseudo element's styles
+    bottom: -2px;
+    content: '';
+    height: 5px;
+    left: 0;
+    position: absolute;
+    transition: width .25s cubic-bezier(.25, .75, .5, 1.25);
+    width: 0;
+  }
+}
+
+.home-page-main-content {
+  @include mq-fun($target: min-width, $breakpoint: rem(600)) {
+    grid-column: 2 / -1;
+  }
+
+  align-self: center;
+  grid-row: 2 / -1;
+
+  h1 {
+    font-size: res-font-size(25, 2.5);
+  }
+
+  h2 {
+    @include mq-fun($target: max-width, $breakpoint: rem(330)) {
+      font-size: res-font-size(10, 3);
+    }
+    font-size: res-font-size(20, 1.5);
+    margin: rem(10) 0;
+
+    span {
+      color: var(--site-header-clr);
+    }
+
+  }
+
+  ul {
+
+    li {
+      font-size: res-font-size(10, 1.5);
+      margin-bottom: rem(10);
+    }
+
+  }
+}

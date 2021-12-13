@@ -1,0 +1,20 @@
+//Font function
+
+@function rem($pixels) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @return $pixels / 16px * 1rem;
+}
+
+@function res-font-size($rem, $vw){
+  $rem: rem($rem);
+  @return calc(#{$rem} + #{$vw}vw);
+}
+
+@mixin mq-fun($breakpoint: rem(420), $target: max-width) {
+  @media only screen and (#{$target}: $breakpoint) {
+    @content;
+  }
+}

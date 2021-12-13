@@ -1,0 +1,18 @@
+
+@font-face {
+  font-family: myfont;
+  src: url('/myfonts/Montserrat-Regular.ttf');
+}
+
+html {
+  font-family: myfont;
+  font-size: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
